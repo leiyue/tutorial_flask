@@ -1,0 +1,17 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}{{ title }}{% endblock title %}
+{% import "bootstrap/utils.html" as utils %}
+
+{% block navbar %}
+    {% include 'core/blocks/nav.html' %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        {{ utils.flashed_messages() }}
+        {% block page %}{% endblock %}
+        <hr>
+        <footer class="footer">
+            <p class="text-muted">&copy; leiyue 2016</p>
+        </footer>
+    </div>
+{% endblock %}

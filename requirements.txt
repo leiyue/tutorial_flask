@@ -1,0 +1,10 @@
+Flask
+Flask-Script
+Flask-SQLAlchemy
+Flask-DebugToolBar
+Flask-Bootstrap
+Flask_Menu
+Flask-WTF
+Flask-Login
+Flask-Principal
+straight.plugin>=1.4.0-post-1

@@ -10,7 +10,7 @@ from .models import User
 from .forms import LoginForm, RegisterForm
 from .utils import UserManager
 
-auth = UserManager('auth', url_prefix='/auth', template_folder='templates')
+auth = UserManager('auth', __name__, url_prefix='/auth', template_folder='templates')
 
 if not current_app.config.get('AUTH_PROFILE_VIEW'):
 

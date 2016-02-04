@@ -33,10 +33,10 @@ class Role(db.Model, BaseMixin):
     name = db.Column(db.String(19), unique=True, nullable=False)
 
     def __unicode__(self):
-        return self.__name__
+        return self.name
 
     def __repr__(self):
-        return '<Role {}>'.format(self.__name__)
+        return '<Role {}>'.format(self.name)
 
 
 class UserMixinMeta(_BoundDeclarativeMeta):
@@ -44,8 +44,8 @@ class UserMixinMeta(_BoundDeclarativeMeta):
         from flask import current_app
         from importlib import import_module
 
-        if current_app and current_app.config.get['AUTH_USER_MIXINS']:
-            for mixin in current_app.config.get['AUTH_USER_MIXINS']:
+        if current_app and current_app.config.get('AUTH_USER_MIXINS'):
+            for mixin in current_app.config.get('AUTH_USER_MIXINS'):
                 mod, cls = mixin.rsplit('.', 1)
                 mod = import_module(mod)
                 cls = getattr(mod, cls)

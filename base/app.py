@@ -17,13 +17,13 @@ def create_app(config=None, **skip):
     app = Flask(__name__)
     app.config.from_object(config or production)
 
-    # with app.test_request_context():
+    with app.test_request_context():
 
-    from .ext import config_extensions
-    config_extensions(app)
+        from .ext import config_extensions
+        config_extensions(app)
 
-    from .loader import loader
-    loader.register(app)
+        from .loader import loader
+        loader.register(app)
 
     return app
 

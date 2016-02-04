@@ -30,7 +30,7 @@ class AppLoader(ModuleLoader):
                 mod = self.import_module('{name}.{submodule}'.format(name=mod.__name__, submodule=submodule))
 
             meta = self._meta(mod)
-            meta and self._meta(*args, **kwargs)
+            meta and meta(*args, **kwargs)
 
             result.append(mod)
 

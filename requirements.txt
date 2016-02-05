@@ -1,7 +1,9 @@
 Flask
 Flask-Script
 Flask-SQLAlchemy
+Flask-Migrate
 Flask-DebugToolBar
+Flask-Collect
 Flask-Bootstrap
 Flask_Menu
 Flask-WTF

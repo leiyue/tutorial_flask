@@ -10,4 +10,4 @@ from .core import *
 
 SECRET_KEY = 'SecretKeyForSessionSigning'
 
-COLLECT_STATIC_ROOT = op.join(op.dirname(ROOT_DIR), 'static')
+COLLECT_STATIC_ROOT = op.join(ROOT_DIR, 'static')

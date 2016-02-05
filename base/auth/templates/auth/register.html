@@ -9,15 +9,11 @@
             <form class="form form-horizontal" action="{{ url_for('auth.register') }}" method="post">
                 {{ form.hidden_tag() }}
                 {{ wtf.form_errors(form, hiddens='only') }}
-
-                {% for field in form %}
-                    {% if not bootstrap_is_hidden_field(field) %}
-                        {{ wtf.form_field(field,
-                    form_type='horizontal',
-                    horizontal_columns=('md', 2, 10),
-                    button_map={'submit':'primary'}) }}
-                    {% endif %}
-                {% endfor %}
+                {{ wtf.quick_form(form,
+                        form_type='horizontal',
+                        horizontal_columns=('md', 2, 10),
+                        button_map={'submit': 'primary'}
+                ) }}
             </form>
         </div>
     </div>

@@ -8,7 +8,11 @@ from flask_menu import register_menu
 
 from base.auth.forms import LoginForm
 
-core = Blueprint('urls', __name__, template_folder='templates')
+core = Blueprint('urls',
+                 __name__,
+                 template_folder='templates',
+                 static_url_path='/static/core',
+                 static_folder='static')
 
 
 @core.route('/')

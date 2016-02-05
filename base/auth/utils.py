@@ -56,7 +56,7 @@ class UserManager(Blueprint):
     def identity_loaded(sender, identity):
         identity.user = current_user
 
-        if current_user.is_authenticated():
+        if current_user.is_authenticated:
             identity.provides.add(UserNeed(current_user.id))
 
             for role in current_user.roles:

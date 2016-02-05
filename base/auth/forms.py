@@ -31,7 +31,7 @@ class PasswordConfirmFormMixin(object):
     ])
 
 
-class LoginForm(Form, EmailFormMixin, PasswordField):
+class LoginForm(Form, EmailFormMixin, PasswordFormMixin):
 
     remember = BooleanField(u'记住我', default=True)
     next = HiddenField()

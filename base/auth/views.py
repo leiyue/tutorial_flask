@@ -4,18 +4,24 @@
 # @Link    : https://leiyue.wordpress.com/
 
 from flask import request, current_app, render_template, flash, redirect, url_for
+from flask.ext.menu import register_menu
 
 from ..ext import db
 from .models import User
 from .forms import LoginForm, RegisterForm
 from .utils import UserManager
 
-auth = UserManager('auth', __name__, url_prefix='/auth', template_folder='templates')
+auth = UserManager('auth',
+                   __name__,
+                   url_prefix='/auth',
+                   template_folder='templates',
+                   static_url_path='/static/core',
+                   static_folder='static')
 
 if not current_app.config.get('AUTH_PROFILE_VIEW'):
-
     @auth.route('/profile/')
     @auth.login_required
+    @register_menu(auth, '.auth.profile', u'注销', order=1)
     def profile():
         return render_template('auth/profile.html')
 
@@ -25,7 +31,7 @@ def login():
     form = LoginForm(request.form)
 
     if form.validate_on_submit():
-        user = User.query.filter(email=form.email.data).first()
+        user = User.query.filter_by(email=form.email.data).first()
 
         if user and user.check_password(form.password.data):
             auth.login(user)
@@ -38,11 +44,14 @@ def login():
 
 @auth.route('/logout')
 @auth.login_required
+@register_menu(auth, '.auth.logout', u'注销', order=2)
 def logout():
     auth.logout()
     return redirect(request.referrer or url_for(auth._login_manager.login_view))
 
+
 @auth.route('/register', methods=['GET', 'POST'])
+@register_menu(auth, '.auth.register', u'注册', order=0)
 def register():
     form = RegisterForm(request.form)
 

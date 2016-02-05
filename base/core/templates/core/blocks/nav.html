@@ -28,27 +28,55 @@
                     {%- endif -%}
                 {% endfor %}
             </ul>
-            <ul class="nav navbar navbar-right">
-                <li>
-                    <p>我要登录</p>
-                </li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">登录</a>
-                    <ul class="dropdown-menu">
+            <ul class="nav navbar-nav navbar-right">
+                <li><p class="navbar-text">欢迎您,&nbsp;{{ current_user.username or '游客' }}</p></li>
+                {% if current_user and current_user.is_authenticated %}
+                    <li><a href="{{ url_for('auth.logout') }}">注销</a></li>
+                {% else%}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录<span class="caret"></span></a>
+                    <ul id="login-dp" class="dropdown-menu">
                         <li>
                             <div class="row">
                                 <div class="col-md-12">
                                     {% import "bootstrap/wtf.html" as wtf %}
-                                    <form class="form form-inline" action="{{ url_for('auth.login') }}" method="post"
+                                    {% from "macro/_formhelpers.html" import render_field %}
+                                    <form class="form form-horizontal" action="{{ url_for('auth.login') }}"
+                                          method="post"
                                           accept-charset="utf-8">
-                                        {{ form.hidden_tag }}
-                                        {{ wtf.quick_form(form) }}
+                                        {{ form.hidden_tag() }}
+                                        {{ wtf.form_errors(form, hiddens="only") }}
+                                        {{ wtf.quick_form(form,
+                                            form_type='horizontal',
+                                            horizontal_columns=('md', 4, 8),
+                                            button_map={'submit': 'primary'}
+                                        ) }}
                                     </form>
+                                </div>
+                                <div class="bottom text-center">
+                                    还没有账号吗?&nbsp;赶紧<a href="{{ url_for('auth.register') }}"><b>注册</b></a>吧!
                                 </div>
                             </div>
                         </li>
                     </ul>
                 </li>
+                {% endif %}
             </ul>
+            {#            <ul class="nav navbar navbar-right">#}
+            {#                <li class="dropdown">#}
+            {#                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"#}
+            {#                       aria-expanded="false">登录<span class="caret"></span></a>#}
+            {#                    <ul class="dropdown-menu" role="menu">#}
+            {#                        <li>#}
+            {#                            <div class="row">#}
+            {#                                <div class="col-md-12">#}
+
+            {#                                </div>#}
+            {#                            </div>#}
+            {#                        </li>#}
+            {#                    </ul>#}
+            {#                </li>#}
+            {#            </ul>#}
         </div>
     </div>
 </nav>

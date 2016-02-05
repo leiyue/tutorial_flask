@@ -9,8 +9,7 @@
 from base.config import op, ROOT_DIR
 
 # Database
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + op.join(ROOT_DIR, '.db')
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + op.join(ROOT_DIR, 'app.db')
 
-# WTForms
-CSRF_ENABLED = True
-CSRF_SESSION_KEY = "somethingimpossibletoguess"
+# WTF
+SECRET_KEY = "somethingimpossibletoguess"

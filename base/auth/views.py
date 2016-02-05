@@ -21,7 +21,7 @@ auth = UserManager('auth',
 if not current_app.config.get('AUTH_PROFILE_VIEW'):
     @auth.route('/profile/')
     @auth.login_required
-    @register_menu(auth, '.auth.profile', u'注销', order=1)
+    @register_menu(auth, '.auth.profile', u'用户档案', order=1)
     def profile():
         return render_template('auth/profile.html')
 

@@ -25,7 +25,7 @@ class UserManager(Blueprint):
             self._login_manager = LoginManager()
             self._login_manager.user_callback = self.user_loader
             self._login_manager.init_app(app)
-            self._login_manager.login_view = app.config.get('AUTH_LOGIN_VIEW', 'core.index')
+            self._login_manager.login_view = app.config.get('AUTH_LOGIN_VIEW', 'urls.index')
             self._login_manager.login_message = u'您需要登录授权才能访问'
 
         self.app = app
